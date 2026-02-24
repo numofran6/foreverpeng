@@ -245,7 +245,7 @@ export default function Home() {
                       >
                         {card.price}
                       </p>
-                      <p className="text-[10px] tracking-widest uppercase mt-1 text-white/40">
+                      <p className="text-[10px] tracking-widest uppercase mt-1 text-white/65">
                         {card.duration}
                       </p>
                     </div>
@@ -354,13 +354,13 @@ export default function Home() {
             ].map((step, i) => (
               <Reveal key={step.num} delay={i * 100}>
                 <div className="border-t border-[#2a2a2a] pt-8 md:pt-10">
-                  <p className="font-display text-6xl font-black text-[#1f1f1f] mb-8 leading-none">
+                  <p className="font-display text-6xl font-black text-[#333] mb-8 leading-none">
                     {step.num}
                   </p>
                   <h3 className="font-display text-xl font-semibold text-white mb-4">
                     {step.title}
                   </h3>
-                  <p className="text-[#5a5552] leading-relaxed text-sm">
+                  <p className="text-[#aaa] leading-relaxed text-sm">
                     {step.desc}
                   </p>
                 </div>
@@ -494,7 +494,7 @@ export default function Home() {
               <h3 className="font-display text-2xl md:text-3xl font-bold mb-5 tracking-wide">
                 FOREVER PENG HAIR
               </h3>
-              <p className="text-[#4a4a4a] text-sm leading-relaxed max-w-xs mb-6">
+              <p className="text-[#888] text-sm leading-relaxed max-w-xs mb-6">
                 Glasgow&apos;s wig specialists. HD lace installs, custom wig
                 units, sew-ins, colour services, and 1:1 training.
               </p>
@@ -510,7 +510,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#3a3a3a] mb-6">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#666] mb-6">
                 Navigate
               </p>
               <div className="flex flex-col gap-3">
@@ -524,7 +524,7 @@ export default function Home() {
                   <a
                     key={label}
                     href={href}
-                    className="text-[#6a6460] hover:text-white transition-colors text-sm"
+                    className="text-[#888] hover:text-white transition-colors text-sm"
                   >
                     {label}
                   </a>
@@ -533,7 +533,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#3a3a3a] mb-6">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#666] mb-6">
                 Connect
               </p>
               <div className="flex flex-col gap-3 mb-8">
@@ -546,7 +546,7 @@ export default function Home() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#6a6460] hover:text-white transition-colors text-sm"
+                    className="text-[#888] hover:text-white transition-colors text-sm"
                   >
                     {s}
                   </a>
@@ -555,7 +555,7 @@ export default function Home() {
               <p className="text-[10px] tracking-[0.3em] uppercase text-[#3a3a3a] mb-3">
                 Contact
               </p>
-              <p className="text-[#4a4a4a] text-sm leading-relaxed">
+              <p className="text-[#888] text-sm leading-relaxed">
                 07707228205
                 <br />
                 foreverpenghair@gmail.com
@@ -564,10 +564,10 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-            <p className="text-[10px] text-[#2a2a2a] tracking-widest uppercase">
+            <p className="text-[10px] text-[#555] tracking-widest uppercase">
               © 2025 Forever Peng Hair. All rights reserved.
             </p>
-            <p className="text-[10px] text-[#2a2a2a] tracking-widest uppercase">
+            <p className="text-[10px] text-[#555] tracking-widest uppercase">
               Booking an appointment confirms agreement to all policies.
             </p>
           </div>

@@ -105,7 +105,7 @@ export default function PoliciesSection() {
             <h2 className="font-display text-4xl md:text-5xl font-bold text-white leading-tight">
               Booking Policies
             </h2>
-            <p className="max-w-[32ch] text-[#5a5552] text-sm leading-relaxed">
+            <p className="max-w-[32ch] text-[#999] text-sm leading-relaxed">
               Booking an appointment confirms your full agreement to the policies
               below. Please read carefully.
             </p>
@@ -145,7 +145,7 @@ export default function PoliciesSection() {
                           <span className="text-[#ff5a1f] text-xs mt-[3px] shrink-0">
                             —
                           </span>
-                          <span className="text-[#7a7672] text-sm leading-relaxed">
+                          <span className="text-[#bbb] text-sm leading-relaxed">
                             {point}
                           </span>
                         </li>
@@ -167,7 +167,7 @@ export default function PoliciesSection() {
             <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
               Train With a Professional
             </h3>
-            <p className="text-[#5a5552] text-sm leading-relaxed max-w-[42ch]">
+            <p className="text-[#999] text-sm leading-relaxed max-w-[42ch]">
               Interested in learning? We offer 1:1 professional training sessions.
               Classes are not booked through this system — email us directly to
               enquire. Classes may be rescheduled once. No refunds once booked.
@@ -175,7 +175,7 @@ export default function PoliciesSection() {
           </div>
           <a
             href="mailto:foreverpenghair@gmail.com"
-            className="shrink-0 text-[11px] tracking-[0.22em] uppercase border border-[#3a3a3a] text-[#8a8480] px-8 py-4 hover:border-[#ff5a1f] hover:text-[#ff5a1f] transition-colors duration-300 text-center"
+            className="shrink-0 text-[11px] tracking-[0.22em] uppercase border border-[#444] text-[#aaa] px-8 py-4 hover:border-[#ff5a1f] hover:text-[#ff5a1f] transition-colors duration-300 text-center"
           >
             Email to Enquire
           </a>

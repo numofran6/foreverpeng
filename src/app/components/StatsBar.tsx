@@ -60,14 +60,14 @@ export default function StatsBar() {
               <p className="font-display text-4xl md:text-5xl font-black text-white">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#4a4a4a] text-center">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#777] text-center">
                 {stat.label}
               </p>
             </div>
           ))}
         </div>
         <div className="mt-10 pt-8 border-t border-[#1a1a1a] flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-display italic text-[#3a3a3a] text-sm text-center md:text-left">
+          <p className="font-display italic text-[#666] text-sm text-center md:text-left">
             &ldquo;At Forever Peng Hair, we value professionalism, precision, and your time.&rdquo;
           </p>
           <a
