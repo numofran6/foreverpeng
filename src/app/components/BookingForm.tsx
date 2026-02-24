@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 const allServices = [
   // Wig Installs
   "Full Lace Wig Install",
   "360 / Double Frontal Wig Install",
   "180 Lace Frontal Wig Install",
-  "Mini Frontal Wig Install (6x6–9x6)",
-  "Lace Closure Wig Install (2x6 / 4x4 / 5x5)",
+  "Mini Frontal Wig Install",
+  "Lace Closure Wig Install",
   "Full Fringe Wig Install",
   // Frontal Ponytails
   "Frontal Ponytail",
@@ -22,8 +23,8 @@ const allServices = [
   "2-Part Leave-Out Sew-In",
   // Wig Making
   "180 Frontal Wig Making",
-  "Mini Frontal Wig Making (6x6–9x6)",
-  "Lace Closure Wig Making (2x6 / 4x4 / 5x5)",
+  "Mini Frontal Wig Making",
+  "Lace Closure Wig Making",
   // Replacements
   "Mini Closure Replacement",
   "Mini Frontal Replacement",
@@ -50,16 +51,39 @@ type FormData = {
   message: string;
 };
 
-export default function BookingForm() {
+type Status = "idle" | "loading" | "success" | "error";
+
+function BookingFormInner() {
+  const searchParams = useSearchParams();
+  const paramService = searchParams.get("service") ?? "";
+
+  // Match the param against allServices (exact or prefix match)
+  const resolveService = (raw: string) => {
+    if (!raw) return "";
+    const exact = allServices.find((s) => s === raw);
+    if (exact) return exact;
+    const prefix = allServices.find((s) =>
+      s.toLowerCase().startsWith(raw.toLowerCase())
+    );
+    return prefix ?? "";
+  };
+
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
-    service: "",
+    service: resolveService(paramService),
     date: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+
+  // Re-run if the query param changes (e.g. user clicks Book on another service)
+  useEffect(() => {
+    const resolved = resolveService(paramService);
+    if (resolved) setForm((prev) => ({ ...prev, service: resolved }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramService]);
 
   const set =
     (field: keyof FormData) =>
@@ -70,12 +94,25 @@ export default function BookingForm() {
     ) =>
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="flex flex-col justify-center py-12 gap-4">
         <div className="w-12 h-px bg-[#ff5a1f]" />
@@ -151,7 +188,7 @@ export default function BookingForm() {
           required
           value={form.service}
           onChange={set("service")}
-          className={inputClass}
+          className={`${inputClass} ${form.service ? "text-[#0a0a0a]" : "text-[#c5bfb6]"}`}
         >
           <option value="" disabled>
             Select a service
@@ -175,12 +212,26 @@ export default function BookingForm() {
         />
       </div>
 
+      {status === "error" && (
+        <p className="text-sm text-red-500">
+          Something went wrong. Please try again or{" "}
+          <a
+            href="https://wa.me/447707228205"
+            className="underline hover:text-[#ff5a1f]"
+          >
+            message us on WhatsApp
+          </a>
+          .
+        </p>
+      )}
+
       <div className="pt-2">
         <button
           type="submit"
-          className="w-full md:w-auto bg-[#0a0a0a] text-[#f9f9f7] text-[11px] tracking-[0.25em] uppercase px-12 py-4 hover:bg-[#ff5a1f] transition-colors duration-300"
+          disabled={status === "loading"}
+          className="w-full md:w-auto bg-[#0a0a0a] text-[#f9f9f7] text-[11px] tracking-[0.25em] uppercase px-12 py-4 hover:bg-[#ff5a1f] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Request Appointment
+          {status === "loading" ? "Sending…" : "Request Appointment"}
         </button>
         <p className="mt-4 text-[11px] text-[#787872] leading-relaxed">
           A £30 non-refundable deposit is required to confirm your booking.
@@ -188,5 +239,13 @@ export default function BookingForm() {
         </p>
       </div>
     </form>
+  );
+}
+
+export default function BookingForm() {
+  return (
+    <Suspense fallback={<div className="h-64 animate-pulse bg-[#f2f2ef]" />}>
+      <BookingFormInner />
+    </Suspense>
   );
 }

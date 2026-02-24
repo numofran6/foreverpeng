@@ -388,7 +388,7 @@ export default function ServicesSection() {
                               {service.price}
                             </p>
                             <a
-                              href="#booking"
+                              href={`?service=${encodeURIComponent(service.name)}#booking`}
                               className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#787872] border border-[#f0d0b8] px-4 py-2 group-hover/item:border-[#ff5a1f] group-hover/item:text-[#ff5a1f] transition-all duration-200 items-center"
                             >
                               Book

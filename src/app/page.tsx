@@ -222,7 +222,7 @@ export default function Home() {
               return (
                 <a
                   key={card.name}
-                  href="#booking"
+                  href={`?service=${encodeURIComponent(card.name)}#booking`}
                   className="snap-start shrink-0 w-60 md:w-70 p-8 flex flex-col justify-between gap-10 group transition-transform duration-300 hover:-translate-y-1"
                   style={{ background: bg, minHeight: "320px" }}
                 >
