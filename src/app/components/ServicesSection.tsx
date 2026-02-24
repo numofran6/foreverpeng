@@ -2,81 +2,281 @@
 
 import { useState } from "react";
 
-const categories = [
+type Service = {
+  name: string;
+  duration: string;
+  price: string;
+  sub?: string;
+};
+
+type Category = {
+  name: string;
+  description: string;
+  categoryNote?: string;
+  services: Service[];
+};
+
+const categories: Category[] = [
   {
-    name: "Hair",
-    description: "From blowouts to full transformations",
+    name: "Wig Installs",
+    description: "Full lace, frontal & closure installs",
+    categoryNote:
+      "All installs include: cornrow foundation · hairline placement & customisation · secure adhesive or glueless install · melt & finish · basic styling (straightening). Natural hair must be clean & braid-ready.",
     services: [
-      { name: "Blowout & Style", duration: "45 min", price: "£45" },
-      { name: "Cut & Style", duration: "60 min", price: "£65" },
-      { name: "Brazilian Blowout", duration: "2 hr 30 min", price: "£180" },
-      { name: "Full Colour", duration: "3 hr", price: "£220" },
-      { name: "Highlights & Balayage", duration: "2 hr 30 min", price: "£150" },
-      { name: "Keratin Treatment", duration: "3 hr", price: "£200" },
-      { name: "Deep Conditioning Treatment", duration: "60 min", price: "£55" },
+      {
+        name: "Full Lace Wig Install",
+        duration: "4 hr",
+        price: "£150",
+        sub: "Best for: Short hair or full styling versatility",
+      },
+      {
+        name: "360 / Double Frontal Wig Install",
+        duration: "4 hr",
+        price: "£120",
+      },
+      {
+        name: "180 Lace Frontal Wig Install",
+        duration: "3 hr",
+        price: "£95",
+      },
+      {
+        name: "Mini Frontal Wig Install",
+        duration: "2.5 hr",
+        price: "£80",
+        sub: "6x6 / 7x7 / 8x8 / 9x6",
+      },
+      {
+        name: "Lace Closure Wig Install",
+        duration: "2 hr",
+        price: "£70",
+        sub: "2x6 / 4x4 / 5x5",
+      },
+      {
+        name: "Full Fringe Wig Install",
+        duration: "2.5 hr",
+        price: "£60",
+        sub: "Requires 5x5–7x7 closure",
+      },
     ],
   },
   {
-    name: "Nails",
-    description: "Manicures, pedicures and nail art",
+    name: "Frontal Ponytails",
+    description: "HD lace frontal ponytail installs",
+    categoryNote:
+      "HD lace only · Extreme height ponytails may require assessment · Styles available: Straight, Curly, Messy Bun, Side Swoop, Braided Ponytail, Knot Bun",
     services: [
-      { name: "Classic Manicure", duration: "30 min", price: "£25" },
-      { name: "Gel Manicure", duration: "45 min", price: "£38" },
-      { name: "Acrylic Full Set", duration: "75 min", price: "£55" },
-      { name: "Acrylic Infill", duration: "45 min", price: "£35" },
-      { name: "Classic Pedicure", duration: "45 min", price: "£35" },
-      { name: "Gel Pedicure", duration: "60 min", price: "£48" },
-      { name: "Nail Art (per nail)", duration: "10 min", price: "£3" },
+      {
+        name: "Frontal Ponytail",
+        duration: "3 hr",
+        price: "£120",
+        sub: "High / Mid / Low placement",
+      },
+      {
+        name: "Double Frontal Ponytail",
+        duration: "3 hr",
+        price: "£180",
+        sub: "Added coverage & height",
+      },
     ],
   },
   {
-    name: "Lashes",
-    description: "Classic, volume and hybrid lash sets",
+    name: "Sew-Ins",
+    description: "All styles include braid foundation & basic styling",
     services: [
-      { name: "Classic Lash Set", duration: "90 min", price: "£70" },
-      { name: "Hybrid Lash Set", duration: "105 min", price: "£80" },
-      { name: "Volume Lash Set", duration: "2 hr", price: "£90" },
-      { name: "Mega Volume Set", duration: "2 hr 30 min", price: "£110" },
-      { name: "Lash Infill", duration: "60 min", price: "£50" },
-      { name: "Lash Removal", duration: "30 min", price: "£20" },
+      {
+        name: "Traditional / Leave-Out / Versatile / Full Fringe",
+        duration: "3 hr",
+        price: "£100",
+      },
+      { name: "Lace Frontal Sew-In", duration: "4 hr", price: "£150" },
+      { name: "Mini Frontal Sew-In", duration: "4 hr", price: "£125" },
+      {
+        name: "Half Up Half Down Sew-In",
+        duration: "4 hr",
+        price: "£165",
+      },
+      { name: "Flip Over Sew-In", duration: "4 hr", price: "£120" },
+      { name: "2-Part Leave-Out Sew-In", duration: "4 hr", price: "£140" },
     ],
   },
   {
-    name: "Brows",
-    description: "Shaping, tinting and lamination",
+    name: "Wig Making",
+    description: "Custom units built to your measurements",
+    categoryNote:
+      "Frontal & bundles not included · Accurate head measurements required · Price varies by frontal size & bundle count · Wig making takes 7 days",
     services: [
-      { name: "Brow Wax & Thread", duration: "30 min", price: "£22" },
-      { name: "Brow Tint", duration: "20 min", price: "£16" },
-      { name: "Brow Wax & Tint", duration: "40 min", price: "£30" },
-      { name: "Brow Lamination", duration: "45 min", price: "£55" },
-      { name: "Henna Brows", duration: "60 min", price: "£48" },
-      { name: "Full Brow Transformation", duration: "75 min", price: "£85" },
+      {
+        name: "180 Frontal Wig Making",
+        duration: "3 hr",
+        price: "£120",
+        sub:
+          "Wig construction · knot bleaching & plucking · cap fitting & reinforcement",
+      },
+      {
+        name: "Mini Frontal Wig Making",
+        duration: "3 hr",
+        price: "£100",
+        sub: "6x6–9x6 · Closure placement & stitching",
+      },
+      {
+        name: "Lace Closure Wig Making",
+        duration: "3 hr",
+        price: "£80",
+        sub: "2x6 / 4x4 / 5x5 · Min. 3 bundles (4+ for 26–32\")",
+      },
     ],
   },
   {
-    name: "Makeup",
-    description: "Everyday glam to bridal artistry",
+    name: "Replacements & Reconstruction",
+    description: "Lace replacements and full unit rebuilds",
     services: [
-      { name: "Everyday Glam", duration: "60 min", price: "£80" },
-      { name: "Special Occasion", duration: "75 min", price: "£100" },
-      { name: "Bridal Makeup", duration: "90 min", price: "£150" },
-      { name: "Bridal Trial", duration: "90 min", price: "£120" },
-      { name: "Makeup Masterclass", duration: "90 min", price: "£130" },
+      {
+        name: "Mini Closure Replacement",
+        duration: "3 hr",
+        price: "£80",
+        sub: "FPH wigs only",
+      },
+      {
+        name: "Mini Frontal Replacement",
+        duration: "3 hr",
+        price: "£90",
+        sub: "FPH wigs only",
+      },
+      {
+        name: "Full Frontal Replacement",
+        duration: "3 hr",
+        price: "£100",
+        sub: "FPH wigs only · Includes new lace install & customisation",
+      },
+      {
+        name: "Standard Closure Reconstruction",
+        duration: "3 hr",
+        price: "£150",
+        sub: "Any wig · Assessment required · Severely damaged lace not accepted",
+      },
+      {
+        name: "Standard Frontal Reconstruction",
+        duration: "3 hr",
+        price: "£200",
+        sub:
+          "Any wig · Re-ventilating hairline · density rebuilding · hairline redesign",
+      },
+    ],
+  },
+  {
+    name: "Colour Services",
+    description: "Contact-free · Hair must arrive 5 days before appointment",
+    categoryNote:
+      "Late submissions incur a £30 fee · Strand testing is mandatory · We are not liable for damage if hair fails strand testing",
+    services: [
+      { name: "Jet Black", duration: "2 hr", price: "£200" },
+      { name: "1B → Natural Brown", duration: "5 hr", price: "£300" },
+      { name: "613 → Pastel", duration: "2 hr", price: "£200" },
+      {
+        name: "Highlights",
+        duration: "Varies",
+        price: "Consultation",
+      },
+      {
+        name: "Colour Correction",
+        duration: "—",
+        price: "Consultation",
+        sub: "Wig only",
+      },
+      {
+        name: "Root Melt / Toning / Grey Coverage",
+        duration: "—",
+        price: "After assessment",
+      },
+    ],
+  },
+  {
+    name: "Consultations & Fittings",
+    description: "In-person assessments and wig fittings",
+    services: [
+      {
+        name: "Consultation",
+        duration: "—",
+        price: "£30",
+        sub: "Non-refundable",
+      },
+      {
+        name: "In-Person Wig Fitting",
+        duration: "—",
+        price: "£30",
+      },
     ],
   },
 ];
 
-const addOns = [
-  { name: "Scalp Massage", duration: "15 min", price: "£15" },
-  { name: "Lash Curling", duration: "15 min", price: "£12" },
-  { name: "Brow Shaping Add-on", duration: "20 min", price: "£18" },
-  { name: "Gel Polish Upgrade", duration: "—", price: "£10" },
-  { name: "Bombshell Curls", duration: "30 min", price: "£25" },
-  { name: "Out-of-Hours Appointment (after 6pm)", duration: "—", price: "+£20" },
+type AddOnItem = { name: string; price: string; note?: string };
+type AddOnGroup = { groupName: string; items: AddOnItem[] };
+
+const addOnGroups: AddOnGroup[] = [
+  {
+    groupName: "Styling",
+    items: [
+      { name: "Styling Only (Curling / Waves)", price: "£50" },
+      { name: "Defined Curls / Crimps", price: "£60" },
+      { name: "Silk Press Finish", price: "£30" },
+      { name: "Cut & Shape (Bob / Layers)", price: "£35" },
+      { name: "Fringe / Bang Trim", price: "£20" },
+      { name: "Parting Change (Middle ↔ Side)", price: "£15" },
+    ],
+  },
+  {
+    groupName: "Ponytail & Upstyle",
+    items: [
+      { name: "Extra Height / Snatched Ponytail", price: "£25" },
+      { name: "Knot Bun / Sculpted Bun Upgrade", price: "£25" },
+      { name: "Custom Ponytail Design", price: "£40" },
+      {
+        name: "Rhinestones / Hair Charms",
+        price: "from £15",
+        note: "Client supplies accessories unless stated otherwise",
+      },
+    ],
+  },
+  {
+    groupName: "Maintenance & Refresh",
+    items: [
+      { name: "Wig Refresh (Wash, Blow-Dry & Style)", price: "£60" },
+      { name: "Half Up Half Down Maintenance", price: "£80" },
+      { name: "Re-Glue Frontal / Closure / Wig Unit", price: "£80" },
+      { name: "Install Removal & Clean-Up", price: "£30" },
+      { name: "Adhesive / Glue Removal (Heavy Build-Up)", price: "£15" },
+    ],
+  },
+  {
+    groupName: "Colour Add-Ons (Per Bundle)",
+    items: [
+      { name: "Jet Black", price: "£25" },
+      { name: "1B to Natural Colour", price: "£40" },
+      { name: "Highlights", price: "£50" },
+      { name: "Grey Coverage (Extra Bundle)", price: "£20" },
+      { name: "Toner / Colour Refresh", price: "£40" },
+    ],
+  },
+  {
+    groupName: "Wig Making & Fit",
+    items: [
+      { name: "Wig Size Adjustment (Tighten / Loosen)", price: "£25" },
+      { name: "Elastic Band Replacement / Upgrade", price: "£20" },
+      { name: "Travel-Ready Wig Prep", price: "£30" },
+    ],
+  },
+  {
+    groupName: "Express & Priority",
+    items: [
+      { name: "Express Service (Short Notice / Priority)", price: "£50" },
+      { name: "Same-Day Wig Prep", price: "£40" },
+      { name: "Out-of-Hours Appointment", price: "£75" },
+    ],
+  },
 ];
 
 export default function ServicesSection() {
-  const [openCategory, setOpenCategory] = useState<string | null>("Hair");
+  const [openCategory, setOpenCategory] = useState<string | null>("Wig Installs");
   const [addOnsOpen, setAddOnsOpen] = useState(false);
 
   return (
@@ -91,8 +291,9 @@ export default function ServicesSection() {
             <h2 className="font-display text-4xl md:text-6xl font-bold text-[#0a0a0a] leading-tight">
               Our Services
             </h2>
-            <p className="max-w-xs text-[#8a8178] text-sm leading-relaxed">
-              Every service is tailored to you. Our expert team uses only premium products, crafted for your unique beauty.
+            <p className="max-w-[30ch] text-[#8a8178] text-sm leading-relaxed">
+              Natural hair styling, sleek finishes, custom wig units and weave
+              installations. 5+ years of premium results.
             </p>
           </div>
         </div>
@@ -107,18 +308,18 @@ export default function ServicesSection() {
                   onClick={() =>
                     setOpenCategory(isOpen ? null : cat.name)
                   }
-                  className="w-full flex items-center justify-between py-6 md:py-8 group text-left"
+                  className="w-full flex items-start justify-between py-6 md:py-8 group text-left"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-6">
+                  <div className="flex flex-col gap-1">
                     <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#b8975a] transition-colors duration-200">
                       {cat.name}
                     </h3>
-                    <span className="text-[11px] tracking-widest text-[#8a8178] uppercase">
+                    <span className="text-[11px] tracking-wide text-[#8a8178]">
                       {cat.description}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 shrink-0 ml-4">
+                  <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
                     <span className="hidden md:block text-[11px] tracking-widest text-[#8a8178]">
                       {cat.services.length} services
                     </span>
@@ -132,62 +333,76 @@ export default function ServicesSection() {
                   </div>
                 </button>
 
-                <div
-                  className={`transition-all duration-400 ${
-                    isOpen ? "pb-8" : "hidden"
-                  }`}
-                >
-                  <div className="divide-y divide-[#e2dbd0]">
-                    {cat.services.map((service) => (
-                      <div
-                        key={service.name}
-                        className="flex items-center justify-between py-4 md:py-5 pl-0 md:pl-6 group/item hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150"
-                      >
-                        <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-8">
-                          <p className="text-[#0a0a0a] font-medium text-sm md:text-base">
-                            {service.name}
-                          </p>
-                          <p className="text-[11px] tracking-widest text-[#8a8178] uppercase">
-                            {service.duration}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-4 md:gap-6 shrink-0 ml-4">
-                          <p className="font-display text-base md:text-lg font-medium text-[#0a0a0a]">
-                            {service.price}
-                          </p>
-                          <a
-                            href="#booking"
-                            className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#8a8178] border border-[#e2dbd0] px-4 py-2 group-hover/item:border-[#0a0a0a] group-hover/item:text-[#0a0a0a] transition-all duration-200 items-center gap-1"
-                          >
-                            Book
-                          </a>
-                        </div>
+                {isOpen && (
+                  <div className="pb-10">
+                    {/* Category-level note */}
+                    {cat.categoryNote && (
+                      <div className="mb-6 pl-4 border-l-2 border-[#b8975a]">
+                        <p className="text-[11px] leading-relaxed text-[#8a8178]">
+                          {cat.categoryNote}
+                        </p>
                       </div>
-                    ))}
+                    )}
+
+                    <div className="divide-y divide-[#e2dbd0]">
+                      {cat.services.map((service) => (
+                        <div
+                          key={service.name}
+                          className="flex items-start md:items-center justify-between py-4 md:py-5 hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150 group/item"
+                        >
+                          <div className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:gap-8">
+                            <div>
+                              <p className="text-[#0a0a0a] font-medium text-sm md:text-base">
+                                {service.name}
+                              </p>
+                              {service.sub && (
+                                <p className="text-[11px] text-[#8a8178] mt-0.5 leading-relaxed">
+                                  {service.sub}
+                                </p>
+                              )}
+                            </div>
+                            <p className="text-[11px] tracking-widest text-[#8a8178] uppercase mt-1 md:mt-0 shrink-0">
+                              {service.duration}
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-4 md:gap-6 shrink-0 ml-4">
+                            <p className="font-display text-base md:text-lg font-medium text-[#0a0a0a] shrink-0">
+                              {service.price}
+                            </p>
+                            <a
+                              href="#booking"
+                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#8a8178] border border-[#e2dbd0] px-4 py-2 group-hover/item:border-[#0a0a0a] group-hover/item:text-[#0a0a0a] transition-all duration-200 items-center"
+                            >
+                              Book
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             );
           })}
 
-          {/* Add-ons */}
+          {/* Add-Ons */}
           <div>
             <button
               onClick={() => setAddOnsOpen(!addOnsOpen)}
-              className="w-full flex items-center justify-between py-6 md:py-8 group text-left"
+              className="w-full flex items-start justify-between py-6 md:py-8 group text-left"
               aria-expanded={addOnsOpen}
             >
-              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-6">
+              <div className="flex flex-col gap-1">
                 <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#b8975a] transition-colors duration-200">
                   Add-Ons
                 </h3>
-                <span className="text-[11px] tracking-widest text-[#8a8178] uppercase">
-                  Enhance your appointment
+                <span className="text-[11px] tracking-wide text-[#8a8178]">
+                  Enhance your appointment — must be selected at time of booking
                 </span>
               </div>
-              <div className="flex items-center gap-4 shrink-0 ml-4">
+              <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
                 <span className="hidden md:block text-[11px] tracking-widest text-[#8a8178]">
-                  {addOns.length} options
+                  6 categories
                 </span>
                 <span
                   className={`text-[#0a0a0a] text-2xl font-light leading-none transition-transform duration-300 ${
@@ -200,27 +415,36 @@ export default function ServicesSection() {
             </button>
 
             {addOnsOpen && (
-              <div className="pb-8">
-                <div className="divide-y divide-[#e2dbd0]">
-                  {addOns.map((addon) => (
-                    <div
-                      key={addon.name}
-                      className="flex items-center justify-between py-4 md:py-5 hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150"
-                    >
-                      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-8">
-                        <p className="text-[#0a0a0a] font-medium text-sm md:text-base">
-                          {addon.name}
-                        </p>
-                        <p className="text-[11px] tracking-widest text-[#8a8178] uppercase">
-                          {addon.duration}
-                        </p>
-                      </div>
-                      <p className="font-display text-base md:text-lg font-medium text-[#0a0a0a] shrink-0 ml-4">
-                        {addon.price}
-                      </p>
+              <div className="pb-10">
+                {addOnGroups.map((group, gi) => (
+                  <div key={group.groupName} className={gi > 0 ? "mt-10" : ""}>
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-[#b8975a] mb-4">
+                      {group.groupName}
+                    </p>
+                    <div className="divide-y divide-[#e2dbd0]">
+                      {group.items.map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex items-start md:items-center justify-between py-3 md:py-4 hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150"
+                        >
+                          <div>
+                            <p className="text-[#0a0a0a] text-sm">
+                              {item.name}
+                            </p>
+                            {item.note && (
+                              <p className="text-[11px] text-[#8a8178] mt-0.5">
+                                {item.note}
+                              </p>
+                            )}
+                          </div>
+                          <p className="font-display text-base font-medium text-[#0a0a0a] shrink-0 ml-4">
+                            {item.price}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>

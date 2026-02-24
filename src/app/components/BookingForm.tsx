@@ -3,29 +3,42 @@
 import { useState } from "react";
 
 const allServices = [
-  "Blowout & Style",
-  "Cut & Style",
-  "Brazilian Blowout",
-  "Full Colour",
-  "Highlights & Balayage",
-  "Keratin Treatment",
-  "Classic Manicure",
-  "Gel Manicure",
-  "Acrylic Full Set",
-  "Classic Pedicure",
-  "Gel Pedicure",
-  "Classic Lash Set",
-  "Hybrid Lash Set",
-  "Volume Lash Set",
-  "Mega Volume Set",
-  "Lash Infill",
-  "Brow Wax & Thread",
-  "Brow Lamination",
-  "Henna Brows",
-  "Full Brow Transformation",
-  "Everyday Glam Makeup",
-  "Special Occasion Makeup",
-  "Bridal Makeup",
+  // Wig Installs
+  "Full Lace Wig Install",
+  "360 / Double Frontal Wig Install",
+  "180 Lace Frontal Wig Install",
+  "Mini Frontal Wig Install (6x6–9x6)",
+  "Lace Closure Wig Install (2x6 / 4x4 / 5x5)",
+  "Full Fringe Wig Install",
+  // Frontal Ponytails
+  "Frontal Ponytail",
+  "Double Frontal Ponytail",
+  // Sew-Ins
+  "Traditional / Leave-Out / Versatile / Full Fringe Sew-In",
+  "Lace Frontal Sew-In",
+  "Mini Frontal Sew-In",
+  "Half Up Half Down Sew-In",
+  "Flip Over Sew-In",
+  "2-Part Leave-Out Sew-In",
+  // Wig Making
+  "180 Frontal Wig Making",
+  "Mini Frontal Wig Making (6x6–9x6)",
+  "Lace Closure Wig Making (2x6 / 4x4 / 5x5)",
+  // Replacements
+  "Mini Closure Replacement",
+  "Mini Frontal Replacement",
+  "Full Frontal Replacement",
+  "Standard Closure Reconstruction",
+  "Standard Frontal Reconstruction",
+  // Colour
+  "Colour Service — Jet Black",
+  "Colour Service — 1B → Natural Brown",
+  "Colour Service — 613 → Pastel",
+  "Colour Service — Highlights",
+  "Colour Correction (Consultation Required)",
+  // Consultations
+  "Consultation (£30)",
+  "In-Person Wig Fitting (£30)",
 ];
 
 type FormData = {
@@ -48,8 +61,13 @@ export default function BookingForm() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const set = (field: keyof FormData) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+  const set =
+    (field: keyof FormData) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >
+    ) =>
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -65,23 +83,21 @@ export default function BookingForm() {
           Thank you,{" "}
           <span className="italic">{form.name.split(" ")[0]}.</span>
         </p>
-        <p className="text-[#8a8178] leading-relaxed mt-2">
-          Your booking request has been received. We'll confirm your appointment
-          within 24 hours via email.
+        <p className="text-[#8a8178] leading-relaxed text-sm mt-1">
+          Your request has been received. We&apos;ll be in touch within 24
+          hours to confirm your appointment and next steps.
         </p>
-        <a
-          href="#services"
-          className="mt-4 text-[11px] tracking-[0.2em] uppercase text-[#8a8178] border-b border-[#e2dbd0] pb-1 w-fit hover:text-[#0a0a0a] hover:border-[#0a0a0a] transition-colors"
-        >
-          Browse more services
-        </a>
+        <p className="text-[11px] tracking-widest uppercase text-[#8a8178] mt-2">
+          WhatsApp us if urgent: 07707228205
+        </p>
       </div>
     );
   }
 
   const inputClass =
     "w-full bg-transparent border-b border-[#e2dbd0] focus:border-[#0a0a0a] outline-none py-3 text-[#0a0a0a] text-sm transition-colors duration-200 placeholder:text-[#c5bfb6]";
-  const labelClass = "text-[10px] tracking-[0.25em] uppercase text-[#8a8178] mb-2 block";
+  const labelClass =
+    "text-[10px] tracking-[0.25em] uppercase text-[#8a8178] mb-2 block";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-7">
@@ -109,13 +125,13 @@ export default function BookingForm() {
           />
         </div>
         <div>
-          <label className={labelClass}>Phone</label>
+          <label className={labelClass}>Phone / WhatsApp</label>
           <input
             type="tel"
             value={form.phone}
             onChange={set("phone")}
             className={inputClass}
-            placeholder="+44 7700 900000"
+            placeholder="07700 000000"
           />
         </div>
         <div>
@@ -149,13 +165,13 @@ export default function BookingForm() {
       </div>
 
       <div>
-        <label className={labelClass}>Special Requests or Notes</label>
+        <label className={labelClass}>Notes / Special Requests</label>
         <textarea
           rows={4}
           value={form.message}
           onChange={set("message")}
           className={`${inputClass} resize-none`}
-          placeholder="Allergies, occasion details, style preferences..."
+          placeholder="Lace size, hair texture, occasion details, any questions..."
         />
       </div>
 
@@ -166,8 +182,9 @@ export default function BookingForm() {
         >
           Request Appointment
         </button>
-        <p className="mt-4 text-[11px] text-[#8a8178]">
-          We'll confirm within 24 hours. Payment is taken at the studio.
+        <p className="mt-4 text-[11px] text-[#8a8178] leading-relaxed">
+          A £30 non-refundable deposit is required to confirm your booking.
+          We&apos;ll send payment details once we receive your request.
         </p>
       </div>
     </form>
