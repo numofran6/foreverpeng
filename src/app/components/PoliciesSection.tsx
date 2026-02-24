@@ -98,7 +98,7 @@ export default function PoliciesSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-14 md:mb-20">
-          <p className="text-[10px] tracking-[0.35em] uppercase text-[#b8975a] mb-5">
+          <p className="text-[10px] tracking-[0.35em] uppercase text-[#ff5a1f] mb-5">
             Before You Book
           </p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -125,7 +125,7 @@ export default function PoliciesSection() {
                   className="w-full flex items-center justify-between py-6 md:py-7 group text-left"
                   aria-expanded={isOpen}
                 >
-                  <h3 className="font-display text-xl md:text-2xl font-semibold text-white group-hover:text-[#b8975a] transition-colors duration-200">
+                  <h3 className="font-display text-xl md:text-2xl font-semibold text-white group-hover:text-[#ff5a1f] transition-colors duration-200">
                     {policy.title}
                   </h3>
                   <span
@@ -142,7 +142,7 @@ export default function PoliciesSection() {
                     <ul className="flex flex-col gap-4">
                       {policy.points.map((point, i) => (
                         <li key={i} className="flex items-start gap-4">
-                          <span className="text-[#b8975a] text-xs mt-[3px] shrink-0">
+                          <span className="text-[#ff5a1f] text-xs mt-[3px] shrink-0">
                             —
                           </span>
                           <span className="text-[#7a7672] text-sm leading-relaxed">
@@ -161,7 +161,7 @@ export default function PoliciesSection() {
         {/* 1:1 Training callout */}
         <div className="mt-16 md:mt-20 border border-[#1f1f1f] p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div>
-            <p className="text-[10px] tracking-[0.35em] uppercase text-[#b8975a] mb-4">
+            <p className="text-[10px] tracking-[0.35em] uppercase text-[#ff5a1f] mb-4">
               1:1 Training
             </p>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
@@ -175,7 +175,7 @@ export default function PoliciesSection() {
           </div>
           <a
             href="mailto:foreverpenghair@gmail.com"
-            className="shrink-0 text-[11px] tracking-[0.22em] uppercase border border-[#3a3a3a] text-[#8a8480] px-8 py-4 hover:border-[#b8975a] hover:text-[#b8975a] transition-colors duration-300 text-center"
+            className="shrink-0 text-[11px] tracking-[0.22em] uppercase border border-[#3a3a3a] text-[#8a8480] px-8 py-4 hover:border-[#ff5a1f] hover:text-[#ff5a1f] transition-colors duration-300 text-center"
           >
             Email to Enquire
           </a>

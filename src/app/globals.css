@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f8f4ee;
+  --bg: #f9f9f7;
   --black: #0a0a0a;
-  --gold: #b8975a;
-  --muted: #8a8178;
-  --border-col: #e2dbd0;
-  --warm-gray: #f0ebe3;
+  --orange: #ff5a1f;
+  --orange-soft: #fff3ee;
+  --muted: #787872;
+  --border: #e8e8e3;
+  --hover-bg: #f2f2ef;
 }
 
 @theme inline {
@@ -19,7 +20,7 @@ html {
 }
 
 body {
-  background: var(--cream);
+  background: var(--bg);
   color: var(--black);
   font-family: var(--font-inter), -apple-system, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -30,14 +31,10 @@ body {
   font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
 }
 
-/* Marquee */
+/* ─── MARQUEE ────────────────────────────────────────── */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .marquee-track {
@@ -47,20 +44,67 @@ body {
   animation: marquee 28s linear infinite;
 }
 
-/* Smooth accordion transition */
-.accordion-content {
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease;
+/* ─── HERO ENTRY ANIMATIONS ──────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 3px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-::-webkit-scrollbar-track {
-  background: var(--cream);
+
+.hero-eyebrow {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.05s;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--border-col);
-  border-radius: 2px;
+.hero-line-1 {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
 }
+.hero-line-2 {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.38s;
+}
+.hero-sub {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.55s;
+}
+.hero-cta {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards 0.7s;
+}
+.hero-bar {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.9s;
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── CARD HOVER ─────────────────────────────────────── */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Hide horizontal scrollbar for card strips */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

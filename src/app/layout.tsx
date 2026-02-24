@@ -15,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ForeverPeng | Luxury Beauty Studio",
+  title: "Forever Peng Hair | Glasgow's Wig Specialists",
   description:
-    "London's premier beauty studio. Expert hair, nails, lashes, brows and makeup. Book your appointment today.",
+    "Glasgow's premier wig specialists. HD lace installs, custom wig units, sew-ins, natural hair styling & 1:1 training. 5+ years. Book via WhatsApp.",
 };
 
 export default function RootLayout({

@@ -78,16 +78,16 @@ export default function BookingForm() {
   if (submitted) {
     return (
       <div className="flex flex-col justify-center py-12 gap-4">
-        <div className="w-12 h-px bg-[#b8975a]" />
+        <div className="w-12 h-px bg-[#ff5a1f]" />
         <p className="font-display text-3xl md:text-4xl font-medium text-[#0a0a0a]">
           Thank you,{" "}
           <span className="italic">{form.name.split(" ")[0]}.</span>
         </p>
-        <p className="text-[#8a8178] leading-relaxed text-sm mt-1">
+        <p className="text-[#787872] leading-relaxed text-sm mt-1">
           Your request has been received. We&apos;ll be in touch within 24
           hours to confirm your appointment and next steps.
         </p>
-        <p className="text-[11px] tracking-widest uppercase text-[#8a8178] mt-2">
+        <p className="text-[11px] tracking-widest uppercase text-[#787872] mt-2">
           WhatsApp us if urgent: 07707228205
         </p>
       </div>
@@ -95,9 +95,9 @@ export default function BookingForm() {
   }
 
   const inputClass =
-    "w-full bg-transparent border-b border-[#e2dbd0] focus:border-[#0a0a0a] outline-none py-3 text-[#0a0a0a] text-sm transition-colors duration-200 placeholder:text-[#c5bfb6]";
+    "w-full bg-transparent border-b border-[#e8e8e3] focus:border-[#0a0a0a] outline-none py-3 text-[#0a0a0a] text-sm transition-colors duration-200 placeholder:text-[#c5bfb6]";
   const labelClass =
-    "text-[10px] tracking-[0.25em] uppercase text-[#8a8178] mb-2 block";
+    "text-[10px] tracking-[0.25em] uppercase text-[#787872] mb-2 block";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-7">
@@ -178,11 +178,11 @@ export default function BookingForm() {
       <div className="pt-2">
         <button
           type="submit"
-          className="w-full md:w-auto bg-[#0a0a0a] text-[#f8f4ee] text-[11px] tracking-[0.25em] uppercase px-12 py-4 hover:bg-[#b8975a] transition-colors duration-300"
+          className="w-full md:w-auto bg-[#0a0a0a] text-[#f9f9f7] text-[11px] tracking-[0.25em] uppercase px-12 py-4 hover:bg-[#ff5a1f] transition-colors duration-300"
         >
           Request Appointment
         </button>
-        <p className="mt-4 text-[11px] text-[#8a8178] leading-relaxed">
+        <p className="mt-4 text-[11px] text-[#787872] leading-relaxed">
           A £30 non-refundable deposit is required to confirm your booking.
           We&apos;ll send payment details once we receive your request.
         </p>

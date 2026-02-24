@@ -280,18 +280,18 @@ export default function ServicesSection() {
   const [addOnsOpen, setAddOnsOpen] = useState(false);
 
   return (
-    <section id="services" className="py-24 md:py-32 border-t border-[#e2dbd0]">
+    <section id="services" className="py-24 md:py-32 border-t border-[#e8e8e3]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-16 md:mb-20">
-          <p className="text-[10px] tracking-[0.35em] uppercase text-[#b8975a] mb-5">
+          <p className="text-[10px] tracking-[0.35em] uppercase text-[#ff5a1f] mb-5">
             What We Offer
           </p>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <h2 className="font-display text-4xl md:text-6xl font-bold text-[#0a0a0a] leading-tight">
               Our Services
             </h2>
-            <p className="max-w-[30ch] text-[#8a8178] text-sm leading-relaxed">
+            <p className="max-w-[30ch] text-[#787872] text-sm leading-relaxed">
               Natural hair styling, sleek finishes, custom wig units and weave
               installations. 5+ years of premium results.
             </p>
@@ -299,7 +299,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Category accordion */}
-        <div className="divide-y divide-[#e2dbd0] border-t border-[#e2dbd0]">
+        <div className="divide-y divide-[#e8e8e3] border-t border-[#e8e8e3]">
           {categories.map((cat) => {
             const isOpen = openCategory === cat.name;
             return (
@@ -312,15 +312,15 @@ export default function ServicesSection() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex flex-col gap-1">
-                    <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#b8975a] transition-colors duration-200">
+                    <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#ff5a1f] transition-colors duration-200">
                       {cat.name}
                     </h3>
-                    <span className="text-[11px] tracking-wide text-[#8a8178]">
+                    <span className="text-[11px] tracking-wide text-[#787872]">
                       {cat.description}
                     </span>
                   </div>
                   <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
-                    <span className="hidden md:block text-[11px] tracking-widest text-[#8a8178]">
+                    <span className="hidden md:block text-[11px] tracking-widest text-[#787872]">
                       {cat.services.length} services
                     </span>
                     <span
@@ -337,18 +337,18 @@ export default function ServicesSection() {
                   <div className="pb-10">
                     {/* Category-level note */}
                     {cat.categoryNote && (
-                      <div className="mb-6 pl-4 border-l-2 border-[#b8975a]">
-                        <p className="text-[11px] leading-relaxed text-[#8a8178]">
+                      <div className="mb-6 pl-4 border-l-2 border-[#ff5a1f]">
+                        <p className="text-[11px] leading-relaxed text-[#787872]">
                           {cat.categoryNote}
                         </p>
                       </div>
                     )}
 
-                    <div className="divide-y divide-[#e2dbd0]">
+                    <div className="divide-y divide-[#e8e8e3]">
                       {cat.services.map((service) => (
                         <div
                           key={service.name}
-                          className="flex items-start md:items-center justify-between py-4 md:py-5 hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150 group/item"
+                          className="flex items-start md:items-center justify-between py-4 md:py-5 hover:bg-[#f2f2ef] -mx-6 px-6 transition-colors duration-150 group/item"
                         >
                           <div className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:gap-8">
                             <div>
@@ -356,12 +356,12 @@ export default function ServicesSection() {
                                 {service.name}
                               </p>
                               {service.sub && (
-                                <p className="text-[11px] text-[#8a8178] mt-0.5 leading-relaxed">
+                                <p className="text-[11px] text-[#787872] mt-0.5 leading-relaxed">
                                   {service.sub}
                                 </p>
                               )}
                             </div>
-                            <p className="text-[11px] tracking-widest text-[#8a8178] uppercase mt-1 md:mt-0 shrink-0">
+                            <p className="text-[11px] tracking-widest text-[#787872] uppercase mt-1 md:mt-0 shrink-0">
                               {service.duration}
                             </p>
                           </div>
@@ -371,7 +371,7 @@ export default function ServicesSection() {
                             </p>
                             <a
                               href="#booking"
-                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#8a8178] border border-[#e2dbd0] px-4 py-2 group-hover/item:border-[#0a0a0a] group-hover/item:text-[#0a0a0a] transition-all duration-200 items-center"
+                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#787872] border border-[#e8e8e3] px-4 py-2 group-hover/item:border-[#0a0a0a] group-hover/item:text-[#0a0a0a] transition-all duration-200 items-center"
                             >
                               Book
                             </a>
@@ -393,15 +393,15 @@ export default function ServicesSection() {
               aria-expanded={addOnsOpen}
             >
               <div className="flex flex-col gap-1">
-                <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#b8975a] transition-colors duration-200">
+                <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#ff5a1f] transition-colors duration-200">
                   Add-Ons
                 </h3>
-                <span className="text-[11px] tracking-wide text-[#8a8178]">
+                <span className="text-[11px] tracking-wide text-[#787872]">
                   Enhance your appointment — must be selected at time of booking
                 </span>
               </div>
               <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
-                <span className="hidden md:block text-[11px] tracking-widest text-[#8a8178]">
+                <span className="hidden md:block text-[11px] tracking-widest text-[#787872]">
                   6 categories
                 </span>
                 <span
@@ -418,21 +418,21 @@ export default function ServicesSection() {
               <div className="pb-10">
                 {addOnGroups.map((group, gi) => (
                   <div key={group.groupName} className={gi > 0 ? "mt-10" : ""}>
-                    <p className="text-[10px] tracking-[0.3em] uppercase text-[#b8975a] mb-4">
+                    <p className="text-[10px] tracking-[0.3em] uppercase text-[#ff5a1f] mb-4">
                       {group.groupName}
                     </p>
-                    <div className="divide-y divide-[#e2dbd0]">
+                    <div className="divide-y divide-[#e8e8e3]">
                       {group.items.map((item) => (
                         <div
                           key={item.name}
-                          className="flex items-start md:items-center justify-between py-3 md:py-4 hover:bg-[#f0ebe3] -mx-6 px-6 transition-colors duration-150"
+                          className="flex items-start md:items-center justify-between py-3 md:py-4 hover:bg-[#f2f2ef] -mx-6 px-6 transition-colors duration-150"
                         >
                           <div>
                             <p className="text-[#0a0a0a] text-sm">
                               {item.name}
                             </p>
                             {item.note && (
-                              <p className="text-[11px] text-[#8a8178] mt-0.5">
+                              <p className="text-[11px] text-[#787872] mt-0.5">
                                 {item.note}
                               </p>
                             )}

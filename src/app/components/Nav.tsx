@@ -23,7 +23,7 @@ export default function Nav() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#f8f4ee]/95 backdrop-blur-md border-b border-[#e2dbd0]"
+          ? "bg-[#f9f9f7]/95 backdrop-blur-md border-b border-[#e8e8e3]"
           : ""
       }`}
     >
@@ -42,14 +42,14 @@ export default function Nav() {
             <a
               key={link.label}
               href={link.href}
-              className="text-[11px] tracking-[0.22em] uppercase text-[#8a8178] hover:text-[#0a0a0a] transition-colors duration-200"
+              className="text-[11px] tracking-[0.22em] uppercase text-[#787872] hover:text-[#0a0a0a] transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#booking"
-            className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f8f4ee] px-7 py-3 hover:bg-[#b8975a] transition-colors duration-300"
+            className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f9f9f7] px-7 py-3 hover:bg-[#ff5a1f] transition-colors duration-300"
           >
             Book Now
           </a>
@@ -82,8 +82,8 @@ export default function Nav() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-400 ${
-          mobileOpen ? "max-h-96 border-b border-[#e2dbd0]" : "max-h-0"
-        } bg-[#f8f4ee]`}
+          mobileOpen ? "max-h-96 border-b border-[#e8e8e3]" : "max-h-0"
+        } bg-[#f9f9f7]`}
       >
         <div className="px-6 py-8 flex flex-col gap-6">
           {links.map((link) => (
@@ -91,7 +91,7 @@ export default function Nav() {
               key={link.label}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="text-[11px] tracking-[0.22em] uppercase text-[#8a8178] hover:text-[#0a0a0a] transition-colors"
+              className="text-[11px] tracking-[0.22em] uppercase text-[#787872] hover:text-[#0a0a0a] transition-colors"
             >
               {link.label}
             </a>
@@ -99,7 +99,7 @@ export default function Nav() {
           <a
             href="#booking"
             onClick={() => setMobileOpen(false)}
-            className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f8f4ee] px-6 py-4 text-center hover:bg-[#b8975a] transition-colors"
+            className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f9f9f7] px-6 py-4 text-center hover:bg-[#ff5a1f] transition-colors"
           >
             Book Now
           </a>
