@@ -1,9 +1,24 @@
+import Image from "next/image";
 import Nav from "./components/Nav";
 import ServicesSection from "./components/ServicesSection";
 import BookingForm from "./components/BookingForm";
 import PoliciesSection from "./components/PoliciesSection";
 import StatsBar from "./components/StatsBar";
 import Reveal from "./components/Reveal";
+
+// Real brand photos downloaded from @foreverpeng.hair Instagram
+const IMGS = {
+  heroPortrait: "/gallery/post-1.jpg",   // 1080×1916 — tall editorial portrait
+  aboutSalon:   "/gallery/post-0.jpg",   // 1080×1350 — brand result shot
+  gallery: [
+    "/gallery/post-3.jpg",  // 1080×1350
+    "/gallery/post-7.jpg",  // 720×960
+    "/gallery/post-2.jpg",  // 720×1280
+    "/gallery/post-5.jpg",  // 640×1136
+    "/gallery/post-0.jpg",  // 1080×1350
+    "/gallery/post-1.jpg",  // 1080×1916
+  ],
+};
 
 const WaSvg = ({ size = "md" }: { size?: "sm" | "md" }) => (
   <svg
@@ -64,61 +79,78 @@ export default function Home() {
       <Nav />
 
       {/* ─── HERO ────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col">
-        <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-6 md:px-12 pt-28 pb-16">
-
-          {/* Glasgow pill badge */}
-          <div className="hero-eyebrow flex items-center gap-3 mb-8 w-fit">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff5a1f] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff5a1f]" />
-            </span>
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[#787872]">
-              Glasgow · Now Booking
-            </p>
-          </div>
-
-          <div className="mb-10">
-            <h1 className="hero-line-1 font-display text-[clamp(4.5rem,13vw,13rem)] font-black leading-[0.88] tracking-tight text-[#0a0a0a]">
-              Forever
-            </h1>
-            <h1
-              className="hero-line-2 font-display text-[clamp(4.5rem,13vw,13rem)] font-black leading-[0.88] tracking-tight"
-              style={{ WebkitTextStroke: "2px #0a0a0a", color: "transparent" }}
-            >
-              Peng
-              <span style={{ WebkitTextStroke: "2px #ff5a1f", color: "transparent" }}>
-                .
-              </span>
-            </h1>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 max-w-5xl">
-            <p className="hero-sub max-w-[30ch] text-[#787872] leading-relaxed text-sm md:text-base">
-              Glasgow&apos;s wig specialists. HD lace installs, custom units,
-              sew-ins &amp; colour. 5+ years. Always premium. Always peng.
-            </p>
-            <div className="hero-cta flex gap-3 shrink-0">
-              <a
-                href="#booking"
-                className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f9f9f7] px-8 py-4 hover:bg-[#ff5a1f] transition-colors duration-300"
-              >
-                Book Now
-              </a>
-              <a
-                href="#services"
-                className="text-[11px] tracking-[0.22em] uppercase border border-[#0a0a0a] text-[#0a0a0a] px-8 py-4 hover:bg-[#0a0a0a] hover:text-[#f9f9f7] transition-colors duration-300"
-              >
-                Services
-              </a>
-            </div>
-          </div>
+      <section className="relative min-h-screen">
+        {/* Portrait image — right 45%, desktop only */}
+        <div className="hidden md:block absolute top-0 right-0 w-[45%] h-full">
+          <Image
+            src={IMGS.heroPortrait}
+            alt="Forever Peng Hair — Glasgow's Wig Specialists"
+            fill
+            priority
+            className="object-cover object-top"
+          />
+          {/* Fade left into page background */}
+          <div className="absolute inset-0 bg-linear-to-r from-[#f9f9f7] via-[#f9f9f7]/30 to-transparent" />
+          {/* Fade bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-[#f9f9f7] to-transparent" />
         </div>
 
-        <div className="hero-bar border-t border-[#e8e8e3] max-w-7xl mx-auto w-full px-6 md:px-12 py-4 flex justify-between items-center text-[10px] tracking-[0.25em] uppercase text-[#787872]">
-          <span>5+ Years Experience</span>
-          <span className="hidden md:block">WhatsApp: 07707228205</span>
-          <span>Scroll to explore ↓</span>
+        <div className="relative flex flex-col min-h-screen">
+          <div className="flex-1 flex flex-col justify-center max-w-7xl mx-auto w-full px-6 md:px-12 pt-28 pb-16">
+
+            {/* Glasgow pill badge */}
+            <div className="hero-eyebrow flex items-center gap-3 mb-8 w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff5a1f] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff5a1f]" />
+              </span>
+              <p className="text-[10px] tracking-[0.4em] uppercase text-[#787872]">
+                Glasgow · Now Booking
+              </p>
+            </div>
+
+            <div className="mb-10 md:max-w-[58%]">
+              <h1 className="hero-line-1 font-display text-[clamp(4.5rem,13vw,13rem)] font-black leading-[0.88] tracking-tight text-[#0a0a0a]">
+                Forever
+              </h1>
+              <h1
+                className="hero-line-2 font-display text-[clamp(4.5rem,13vw,13rem)] font-black leading-[0.88] tracking-tight"
+                style={{ WebkitTextStroke: "2px #0a0a0a", color: "transparent" }}
+              >
+                Peng
+                <span style={{ WebkitTextStroke: "2px #ff5a1f", color: "transparent" }}>
+                  .
+                </span>
+              </h1>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:max-w-[58%]">
+              <p className="hero-sub max-w-[30ch] text-[#787872] leading-relaxed text-sm md:text-base">
+                Glasgow&apos;s wig specialists. HD lace installs, custom units,
+                sew-ins &amp; colour. 5+ years. Always premium. Always peng.
+              </p>
+              <div className="hero-cta flex gap-3 shrink-0">
+                <a
+                  href="#booking"
+                  className="text-[11px] tracking-[0.22em] uppercase bg-[#0a0a0a] text-[#f9f9f7] px-8 py-4 hover:bg-[#ff5a1f] transition-colors duration-300"
+                >
+                  Book Now
+                </a>
+                <a
+                  href="#services"
+                  className="text-[11px] tracking-[0.22em] uppercase border border-[#0a0a0a] text-[#0a0a0a] px-8 py-4 hover:bg-[#0a0a0a] hover:text-[#f9f9f7] transition-colors duration-300"
+                >
+                  Services
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-bar border-t border-[#e8e8e3] max-w-7xl mx-auto w-full px-6 md:px-12 py-4 flex justify-between items-center text-[10px] tracking-[0.25em] uppercase text-[#787872]">
+            <span>5+ Years Experience</span>
+            <span className="hidden md:block">WhatsApp: 07707228205</span>
+            <span>Scroll to explore ↓</span>
+          </div>
         </div>
       </section>
 
@@ -239,18 +271,17 @@ export default function Home() {
 
             <Reveal delay={150}>
               <div className="relative">
-                <div className="aspect-3/4 bg-linear-to-br from-[#1a1a1a] via-[#0d0d0d] to-[#0a0a0a] relative overflow-hidden">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 opacity-[0.06]">
-                    <p className="font-display text-5xl font-black tracking-wider text-white">
-                      FOREVER
-                    </p>
-                    <div className="w-12 h-px bg-white" />
-                    <p className="font-display text-5xl font-black italic tracking-wider text-white">
-                      PENG
-                    </p>
-                  </div>
-                  <div className="absolute top-6 right-6 w-8 h-8 border border-[#ff5a1f] opacity-40" />
-                  <div className="absolute bottom-6 left-6 w-8 h-8 border border-[#ff5a1f] opacity-40" />
+                <div className="aspect-3/4 relative overflow-hidden">
+                  <Image
+                    src={IMGS.aboutSalon}
+                    alt="Forever Peng Hair stylist at work"
+                    fill
+                    className="object-cover object-center"
+                  />
+                  {/* Dark gradient overlay at bottom */}
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a]/75 via-transparent to-transparent" />
+                  <div className="absolute top-6 right-6 w-8 h-8 border border-[#ff5a1f] opacity-70" />
+                  <div className="absolute top-6 left-6 w-8 h-8 border border-[#ff5a1f] opacity-40" />
                   <div className="absolute bottom-8 left-8 right-8">
                     <p className="text-[10px] tracking-[0.3em] uppercase text-[#ff5a1f] mb-2">
                       Glasgow&apos;s Wig Specialists
@@ -336,33 +367,30 @@ export default function Home() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0.5">
-          {[
-            { from: "#111111", to: "#1c1c1c", label: "Wig Installs" },
-            { from: "#ff5a1f", to: "#e04810", label: "Frontal Ponytails" },
-            { from: "#1a1a1a", to: "#0a0a0a", label: "Sew-Ins" },
-            { from: "#1f100a", to: "#0f0804", label: "Colour Services" },
-          ].map((item, i) => (
-            <div
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-0.5">
+          {IMGS.gallery.map((src, i) => (
+            <a
               key={i}
-              className="aspect-3/4 relative overflow-hidden group cursor-pointer"
-              style={{
-                background: `linear-gradient(135deg, ${item.from}, ${item.to})`,
-              }}
+              href="https://www.instagram.com/foreverpeng.hair"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-square relative overflow-hidden group"
             >
-              <div className="absolute inset-0 bg-[#ff5a1f] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-[0.04]">
-                <p className="font-display text-6xl font-black text-white -rotate-12">
-                  FP
-                </p>
+              <Image
+                src={src}
+                alt={`Forever Peng Hair — post ${i + 1}`}
+                fill
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-[#0a0a0a] opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+              {/* Instagram icon on hover */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                <p className="text-white text-[10px] tracking-[0.25em] uppercase">
-                  {item.label}
-                </p>
-              </div>
-              <div className="absolute top-4 right-4 w-6 h-6 border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
+            </a>
           ))}
         </div>
       </section>
