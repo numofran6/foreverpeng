@@ -8,15 +8,20 @@ import Reveal from "./components/Reveal";
 
 // Real brand photos downloaded from @foreverpeng.hair Instagram
 const IMGS = {
-  heroPortrait: "/gallery/post-1.jpg",   // 1080×1916 — tall editorial portrait
-  aboutSalon:   "/gallery/post-0.jpg",   // 1080×1350 — brand result shot
+  // Hero collage: left column (full height) + right column (two stacked)
+  heroCollage: [
+    "/gallery/post-1.jpg",  // left — 1080×1916, tall
+    "/gallery/post-0.jpg",  // right top — 1080×1350
+    "/gallery/post-3.jpg",  // right bottom — 1080×1350
+  ],
+  aboutSalon: "/gallery/post-2.jpg",  // 720×1280 — brand work shot
   gallery: [
+    "/gallery/post-0.jpg",  // 1080×1350
     "/gallery/post-3.jpg",  // 1080×1350
     "/gallery/post-7.jpg",  // 720×960
-    "/gallery/post-2.jpg",  // 720×1280
     "/gallery/post-5.jpg",  // 640×1136
-    "/gallery/post-0.jpg",  // 1080×1350
     "/gallery/post-1.jpg",  // 1080×1916
+    "/gallery/post-2.jpg",  // 720×1280
   ],
 };
 
@@ -80,19 +85,42 @@ export default function Home() {
 
       {/* ─── HERO ────────────────────────────────────────────────── */}
       <section className="relative min-h-screen">
-        {/* Portrait image — right 45%, desktop only */}
-        <div className="hidden md:block absolute top-0 right-0 w-[45%] h-full">
-          <Image
-            src={IMGS.heroPortrait}
-            alt="Forever Peng Hair — Glasgow's Wig Specialists"
-            fill
-            priority
-            className="object-cover object-top"
-          />
-          {/* Fade left into page background */}
-          <div className="absolute inset-0 bg-linear-to-r from-[#f9f9f7] via-[#f9f9f7]/30 to-transparent" />
-          {/* Fade bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-[#f9f9f7] to-transparent" />
+        {/* Photo collage — right 46%, desktop only */}
+        <div className="hidden md:flex absolute top-0 right-0 w-[46%] h-full gap-0.5">
+          {/* Left column — full height */}
+          <div className="relative flex-1 overflow-hidden">
+            <Image
+              src={IMGS.heroCollage[0]}
+              alt="Forever Peng Hair work"
+              fill
+              priority
+              className="object-cover object-top"
+            />
+          </div>
+          {/* Right column — two stacked */}
+          <div className="flex flex-col flex-1 gap-0.5">
+            <div className="relative flex-3 overflow-hidden">
+              <Image
+                src={IMGS.heroCollage[1]}
+                alt="Forever Peng Hair work"
+                fill
+                priority
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="relative flex-2 overflow-hidden">
+              <Image
+                src={IMGS.heroCollage[2]}
+                alt="Forever Peng Hair work"
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+          {/* Fade left edge into page */}
+          <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-[#f9f9f7] via-[#f9f9f7]/20 to-transparent" />
+          {/* Fade bottom edge */}
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-48 bg-linear-to-t from-[#f9f9f7] to-transparent" />
         </div>
 
         <div className="relative flex flex-col min-h-screen">
