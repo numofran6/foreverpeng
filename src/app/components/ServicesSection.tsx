@@ -299,42 +299,60 @@ export default function ServicesSection() {
         </div>
 
         {/* Category accordion */}
-        <div className="divide-y divide-[#e8e8e3] border-t border-[#e8e8e3]">
+        <div className="border-t border-[#e8e8e3]">
           {categories.map((cat) => {
             const isOpen = openCategory === cat.name;
             return (
-              <div key={cat.name}>
+              <div
+                key={cat.name}
+                className={`transition-colors duration-300 ${
+                  isOpen
+                    ? "bg-[#fff3ee] -mx-6 md:-mx-12 px-6 md:px-12 border-y border-[#ff5a1f] -mt-px"
+                    : "border-b border-[#e8e8e3]"
+                }`}
+              >
                 <button
                   onClick={() =>
                     setOpenCategory(isOpen ? null : cat.name)
                   }
-                  className="w-full flex items-start justify-between py-6 md:py-8 group text-left"
+                  className={`w-full flex items-center justify-between group text-left transition-all duration-200 ${
+                    isOpen ? "py-8 md:py-10" : "py-6 md:py-8 hover:bg-[#f7f7f5]"
+                  }`}
                   aria-expanded={isOpen}
                 >
-                  <div className="flex flex-col gap-1">
-                    <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#ff5a1f] transition-colors duration-200">
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
+                      isOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
+                    }`}>
                       {cat.name}
                     </h3>
                     <span className="text-[11px] tracking-wide text-[#787872]">
                       {cat.description}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
-                    <span className="hidden md:block text-[11px] tracking-widest text-[#787872]">
+                  <div className="flex items-center gap-3 shrink-0 ml-4">
+                    <span className={`hidden md:block text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 transition-all duration-200 ${
+                      isOpen
+                        ? "bg-[#ff5a1f] text-white"
+                        : "bg-[#f2f2ef] text-[#787872]"
+                    }`}>
                       {cat.services.length} services
                     </span>
-                    <span
-                      className={`text-[#0a0a0a] text-2xl font-light leading-none transition-transform duration-300 ${
+                    {/* Toggle — always solid filled */}
+                    <div className={`w-11 h-11 flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen ? "bg-[#ff5a1f]" : "bg-[#0a0a0a] group-hover:bg-[#ff5a1f]"
+                    }`}>
+                      <span className={`text-2xl leading-none text-white transition-transform duration-300 ${
                         isOpen ? "rotate-45" : ""
-                      }`}
-                    >
-                      +
-                    </span>
+                      }`}>
+                        +
+                      </span>
+                    </div>
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="pb-10">
+                  <div className="pb-10 pt-1">
                     {/* Category-level note */}
                     {cat.categoryNote && (
                       <div className="mb-6 pl-4 border-l-2 border-[#ff5a1f]">
@@ -344,11 +362,11 @@ export default function ServicesSection() {
                       </div>
                     )}
 
-                    <div className="divide-y divide-[#e8e8e3]">
+                    <div className="divide-y divide-[#f5dece]">
                       {cat.services.map((service) => (
                         <div
                           key={service.name}
-                          className="flex items-start md:items-center justify-between py-4 md:py-5 hover:bg-[#f2f2ef] -mx-6 px-6 transition-colors duration-150 group/item"
+                          className="flex items-start md:items-center justify-between py-4 md:py-5 hover:bg-[#feeee4] -mx-6 px-6 transition-colors duration-150 group/item"
                         >
                           <div className="flex flex-col gap-0.5 md:flex-row md:items-baseline md:gap-8">
                             <div>
@@ -366,12 +384,12 @@ export default function ServicesSection() {
                             </p>
                           </div>
                           <div className="flex items-center gap-4 md:gap-6 shrink-0 ml-4">
-                            <p className="font-display text-base md:text-lg font-medium text-[#0a0a0a] shrink-0">
+                            <p className="font-display text-base md:text-lg font-bold text-[#ff5a1f] shrink-0">
                               {service.price}
                             </p>
                             <a
                               href="#booking"
-                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#787872] border border-[#e8e8e3] px-4 py-2 group-hover/item:border-[#0a0a0a] group-hover/item:text-[#0a0a0a] transition-all duration-200 items-center"
+                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#787872] border border-[#f0d0b8] px-4 py-2 group-hover/item:border-[#ff5a1f] group-hover/item:text-[#ff5a1f] transition-all duration-200 items-center"
                             >
                               Book
                             </a>
@@ -386,31 +404,47 @@ export default function ServicesSection() {
           })}
 
           {/* Add-Ons */}
-          <div>
+          <div
+            className={`transition-colors duration-300 ${
+              addOnsOpen
+                ? "bg-[#fff3ee] -mx-6 md:-mx-12 px-6 md:px-12 border-y border-[#ff5a1f] -mt-px"
+                : "border-b border-[#e8e8e3]"
+            }`}
+          >
             <button
               onClick={() => setAddOnsOpen(!addOnsOpen)}
-              className="w-full flex items-start justify-between py-6 md:py-8 group text-left"
+              className={`w-full flex items-center justify-between group text-left transition-all duration-200 ${
+                addOnsOpen ? "py-8 md:py-10" : "py-6 md:py-8 hover:bg-[#f7f7f5]"
+              }`}
               aria-expanded={addOnsOpen}
             >
-              <div className="flex flex-col gap-1">
-                <h3 className="font-display text-2xl md:text-3xl font-semibold text-[#0a0a0a] group-hover:text-[#ff5a1f] transition-colors duration-200">
+              <div className="flex flex-col gap-1.5">
+                <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
+                  addOnsOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
+                }`}>
                   Add-Ons
                 </h3>
                 <span className="text-[11px] tracking-wide text-[#787872]">
                   Enhance your appointment — must be selected at time of booking
                 </span>
               </div>
-              <div className="flex items-center gap-4 shrink-0 ml-4 pt-1">
-                <span className="hidden md:block text-[11px] tracking-widest text-[#787872]">
+              <div className="flex items-center gap-3 shrink-0 ml-4">
+                <span className={`hidden md:block text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 transition-all duration-200 ${
+                  addOnsOpen
+                    ? "bg-[#ff5a1f] text-white"
+                    : "bg-[#f2f2ef] text-[#787872]"
+                }`}>
                   6 categories
                 </span>
-                <span
-                  className={`text-[#0a0a0a] text-2xl font-light leading-none transition-transform duration-300 ${
+                <div className={`w-11 h-11 flex items-center justify-center shrink-0 transition-all duration-300 ${
+                  addOnsOpen ? "bg-[#ff5a1f]" : "bg-[#0a0a0a] group-hover:bg-[#ff5a1f]"
+                }`}>
+                  <span className={`text-2xl leading-none text-white transition-transform duration-300 ${
                     addOnsOpen ? "rotate-45" : ""
-                  }`}
-                >
-                  +
-                </span>
+                  }`}>
+                    +
+                  </span>
+                </div>
               </div>
             </button>
 
@@ -421,11 +455,11 @@ export default function ServicesSection() {
                     <p className="text-[10px] tracking-[0.3em] uppercase text-[#ff5a1f] mb-4">
                       {group.groupName}
                     </p>
-                    <div className="divide-y divide-[#e8e8e3]">
+                    <div className="divide-y divide-[#f5dece]">
                       {group.items.map((item) => (
                         <div
                           key={item.name}
-                          className="flex items-start md:items-center justify-between py-3 md:py-4 hover:bg-[#f2f2ef] -mx-6 px-6 transition-colors duration-150"
+                          className="flex items-start md:items-center justify-between py-3 md:py-4 hover:bg-[#feeee4] -mx-6 px-6 transition-colors duration-150"
                         >
                           <div>
                             <p className="text-[#0a0a0a] text-sm">
