@@ -330,7 +330,7 @@ export default function ServicesSection() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-5">
-                    <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden shrink-0">
+                    <div className="relative w-24 h-24 md:w-44 md:h-32 overflow-hidden shrink-0">
                       <Image
                         src={cat.image}
                         alt={cat.name}
@@ -408,7 +408,7 @@ export default function ServicesSection() {
                             </p>
                             <a
                               href={`?service=${encodeURIComponent(service.name)}#booking`}
-                              className="hidden md:flex text-[10px] tracking-[0.2em] uppercase text-[#787872] border border-[#f0d0b8] px-4 py-2 group-hover/item:border-[#ff5a1f] group-hover/item:text-[#ff5a1f] transition-all duration-200 items-center"
+                              className="flex shrink-0 text-[10px] tracking-[0.2em] uppercase text-[#ff5a1f] border border-[#ff5a1f] px-4 py-2.5 items-center md:text-[#787872] md:border-[#f0d0b8] md:hover:border-[#ff5a1f] md:hover:text-[#ff5a1f] transition-all duration-200"
                             >
                               Book
                             </a>
@@ -438,7 +438,7 @@ export default function ServicesSection() {
               aria-expanded={addOnsOpen}
             >
               <div className="flex items-center gap-5">
-                <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden shrink-0">
+                <div className="relative w-24 h-24 md:w-44 md:h-32 overflow-hidden shrink-0">
                   <Image
                     src="/gallery/post-0.jpg"
                     alt="Add-Ons"
