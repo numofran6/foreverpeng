@@ -41,40 +41,35 @@ const featuredServices = [
     name: "Full Lace Wig Install",
     price: "from £150",
     duration: "2.5–3h",
-    dark: true,
-    orange: false,
+    image: "/gallery/post-1.jpg",
   },
   {
     label: "Trending",
     name: "Frontal Ponytail",
     price: "from £120",
     duration: "1.5h",
-    dark: false,
-    orange: true,
+    image: "/gallery/post-5.jpg",
   },
   {
     label: "Wig Making",
     name: "180 Frontal Wig",
     price: "from £120",
     duration: "7 days",
-    dark: true,
-    orange: false,
+    image: "/gallery/post-7.jpg",
   },
   {
     label: "Sew-In",
     name: "Lace Frontal Sew-In",
     price: "from £150",
     duration: "2.5–3h",
-    dark: true,
-    orange: false,
+    image: "/gallery/post-2.jpg",
   },
   {
     label: "Colour",
     name: "Colour Service",
     price: "from £200",
     duration: "Varies",
-    dark: false,
-    orange: true,
+    image: "/gallery/post-6.jpg",
   },
 ];
 
@@ -203,61 +198,64 @@ export default function Home() {
 
       {/* ─── FEATURED SERVICES ───────────────────────────────────── */}
       <section className="py-16 md:py-20 border-b border-[#e8e8e3]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
           <Reveal>
             <p className="text-[10px] tracking-[0.35em] uppercase text-[#ff5a1f] mb-3">
               Featured
             </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a0a0a]">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-8">
               Most Booked Services
             </h2>
           </Reveal>
-        </div>
-        <div className="overflow-x-auto no-scrollbar px-6 md:px-12">
-          <div className="flex gap-4 w-max snap-x snap-mandatory pb-2">
-            {featuredServices.map((card) => {
-              const bg = card.orange ? "#ff5a1f" : card.dark ? "#0a0a0a" : "#141414";
-              const priceColor = card.orange ? "#fff" : "#ff5a1f";
-              const labelColor = card.orange ? "rgba(0,0,0,0.5)" : "rgba(255,90,31,0.7)";
-              return (
-                <a
-                  key={card.name}
-                  href={`?service=${encodeURIComponent(card.name)}#booking`}
-                  className="snap-start shrink-0 w-60 md:w-70 p-8 flex flex-col justify-between gap-10 group transition-transform duration-300 hover:-translate-y-1"
-                  style={{ background: bg, minHeight: "320px" }}
-                >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+            {featuredServices.map((card, index) => (
+              <a
+                key={card.name}
+                href={`?service=${encodeURIComponent(card.name)}#booking`}
+                className={`relative overflow-hidden group ${
+                  index === 0
+                    ? "md:col-span-2 min-h-64 md:min-h-95"
+                    : index === 1
+                    ? "min-h-64 md:min-h-95"
+                    : "min-h-48 md:min-h-60"
+                }`}
+              >
+                <Image
+                  src={card.image}
+                  alt={card.name}
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/10" />
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
+                  <p className="text-[10px] tracking-[0.3em] uppercase text-[#ff5a1f]">
+                    {card.label}
+                  </p>
                   <div>
-                    <p
-                      className="text-[10px] tracking-[0.3em] uppercase mb-6"
-                      style={{ color: labelColor }}
+                    <h3
+                      className={`font-display font-bold leading-tight text-white mb-3 ${
+                        index === 0 ? "text-2xl md:text-4xl" : "text-xl md:text-2xl"
+                      }`}
                     >
-                      {card.label}
-                    </p>
-                    <h3 className="font-display text-2xl font-bold leading-tight text-white">
                       {card.name}
                     </h3>
-                  </div>
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <p
-                        className="font-display text-3xl font-black"
-                        style={{ color: priceColor }}
-                      >
-                        {card.price}
-                      </p>
-                      <p className="text-[10px] tracking-widest uppercase mt-1 text-white/65">
-                        {card.duration}
-                      </p>
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="font-display text-xl md:text-2xl font-black text-[#ff5a1f]">
+                          {card.price}
+                        </p>
+                        <p className="text-[10px] tracking-widest uppercase mt-1 text-white/65">
+                          {card.duration}
+                        </p>
+                      </div>
+                      <span className="text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white">
+                        →
+                      </span>
                     </div>
-                    <span
-                      className="text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white"
-                    >
-                      →
-                    </span>
                   </div>
-                </a>
-              );
-            })}
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -354,7 +352,7 @@ export default function Home() {
             ].map((step, i) => (
               <Reveal key={step.num} delay={i * 100}>
                 <div className="border-t border-[#2a2a2a] pt-8 md:pt-10">
-                  <p className="font-display text-6xl font-black text-[#333] mb-8 leading-none">
+                  <p className="font-display text-6xl font-black text-[#555] mb-8 leading-none">
                     {step.num}
                   </p>
                   <h3 className="font-display text-xl font-semibold text-white mb-4">
@@ -510,7 +508,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#666] mb-6">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#999] mb-6">
                 Navigate
               </p>
               <div className="flex flex-col gap-3">
@@ -533,7 +531,7 @@ export default function Home() {
             </div>
 
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#666] mb-6">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#999] mb-6">
                 Connect
               </p>
               <div className="flex flex-col gap-3 mb-8">
@@ -552,7 +550,7 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#3a3a3a] mb-3">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#777] mb-3">
                 Contact
               </p>
               <p className="text-[#888] text-sm leading-relaxed">
@@ -564,10 +562,10 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-            <p className="text-[10px] text-[#555] tracking-widest uppercase">
+            <p className="text-[10px] text-[#777] tracking-widest uppercase">
               © 2025 Forever Peng Hair. All rights reserved.
             </p>
-            <p className="text-[10px] text-[#555] tracking-widest uppercase">
+            <p className="text-[10px] text-[#777] tracking-widest uppercase">
               Booking an appointment confirms agreement to all policies.
             </p>
           </div>

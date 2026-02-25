@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type Service = {
   name: string;
@@ -13,6 +14,7 @@ type Category = {
   name: string;
   description: string;
   categoryNote?: string;
+  image: string;
   services: Service[];
 };
 
@@ -20,6 +22,7 @@ const categories: Category[] = [
   {
     name: "Wig Installs",
     description: "Full lace, frontal & closure installs",
+    image: "/gallery/post-1.jpg",
     categoryNote:
       "All installs include: cornrow foundation · hairline placement & customisation · secure adhesive or glueless install · melt & finish · basic styling (straightening). Natural hair must be clean & braid-ready.",
     services: [
@@ -62,6 +65,7 @@ const categories: Category[] = [
   {
     name: "Frontal Ponytails",
     description: "HD lace frontal ponytail installs",
+    image: "/gallery/post-5.jpg",
     categoryNote:
       "HD lace only · Extreme height ponytails may require assessment · Styles available: Straight, Curly, Messy Bun, Side Swoop, Braided Ponytail, Knot Bun",
     services: [
@@ -82,6 +86,7 @@ const categories: Category[] = [
   {
     name: "Sew-Ins",
     description: "All styles include braid foundation & basic styling",
+    image: "/gallery/post-2.jpg",
     services: [
       {
         name: "Traditional / Leave-Out / Versatile / Full Fringe",
@@ -102,6 +107,7 @@ const categories: Category[] = [
   {
     name: "Wig Making",
     description: "Custom units built to your measurements",
+    image: "/gallery/post-7.jpg",
     categoryNote:
       "Frontal & bundles not included · Accurate head measurements required · Price varies by frontal size & bundle count · Wig making takes 7 days",
     services: [
@@ -129,6 +135,7 @@ const categories: Category[] = [
   {
     name: "Replacements & Reconstruction",
     description: "Lace replacements and full unit rebuilds",
+    image: "/gallery/post-4.jpg",
     services: [
       {
         name: "Mini Closure Replacement",
@@ -166,6 +173,7 @@ const categories: Category[] = [
   {
     name: "Colour Services",
     description: "Contact-free · Hair must arrive 5 days before appointment",
+    image: "/gallery/post-6.jpg",
     categoryNote:
       "Late submissions incur a £30 fee · Strand testing is mandatory · We are not liable for damage if hair fails strand testing",
     services: [
@@ -193,6 +201,7 @@ const categories: Category[] = [
   {
     name: "Consultations & Fittings",
     description: "In-person assessments and wig fittings",
+    image: "/gallery/post-3.jpg",
     services: [
       {
         name: "Consultation",
@@ -320,15 +329,25 @@ export default function ServicesSection() {
                   }`}
                   aria-expanded={isOpen}
                 >
-                  <div className="flex flex-col gap-1.5">
-                    <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
-                      isOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
-                    }`}>
-                      {cat.name}
-                    </h3>
-                    <span className="text-[11px] tracking-wide text-[#787872]">
-                      {cat.description}
-                    </span>
+                  <div className="flex items-center gap-5">
+                    <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden shrink-0">
+                      <Image
+                        src={cat.image}
+                        alt={cat.name}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
+                        isOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
+                      }`}>
+                        {cat.name}
+                      </h3>
+                      <span className="text-[11px] tracking-wide text-[#787872]">
+                        {cat.description}
+                      </span>
+                    </div>
                   </div>
                   <div className="flex items-center gap-3 shrink-0 ml-4">
                     <span className={`hidden md:block text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 transition-all duration-200 ${
@@ -418,15 +437,25 @@ export default function ServicesSection() {
               }`}
               aria-expanded={addOnsOpen}
             >
-              <div className="flex flex-col gap-1.5">
-                <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
-                  addOnsOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
-                }`}>
-                  Add-Ons
-                </h3>
-                <span className="text-[11px] tracking-wide text-[#787872]">
-                  Enhance your appointment — must be selected at time of booking
-                </span>
+              <div className="flex items-center gap-5">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 overflow-hidden shrink-0">
+                  <Image
+                    src="/gallery/post-0.jpg"
+                    alt="Add-Ons"
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <h3 className={`font-display text-2xl md:text-3xl font-semibold transition-colors duration-200 ${
+                    addOnsOpen ? "text-[#ff5a1f]" : "text-[#0a0a0a] group-hover:text-[#ff5a1f]"
+                  }`}>
+                    Add-Ons
+                  </h3>
+                  <span className="text-[11px] tracking-wide text-[#787872]">
+                    Enhance your appointment — must be selected at time of booking
+                  </span>
+                </div>
               </div>
               <div className="flex items-center gap-3 shrink-0 ml-4">
                 <span className={`hidden md:block text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 transition-all duration-200 ${
