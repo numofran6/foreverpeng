@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type Service = {
   name: string;
@@ -287,6 +288,13 @@ const addOnGroups: AddOnGroup[] = [
 export default function ServicesSection() {
   const [openCategory, setOpenCategory] = useState<string | null>("Wig Installs");
   const [addOnsOpen, setAddOnsOpen] = useState(false);
+  const router = useRouter();
+
+  const bookService = (e: React.MouseEvent<HTMLAnchorElement>, name: string) => {
+    e.preventDefault();
+    router.push(`?service=${encodeURIComponent(name)}`, { scroll: false });
+    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="services" className="py-24 md:py-32 border-t border-[#e8e8e3]">
@@ -408,6 +416,7 @@ export default function ServicesSection() {
                             </p>
                             <a
                               href={`?service=${encodeURIComponent(service.name)}#booking`}
+                              onClick={(e) => bookService(e, service.name)}
                               className="flex shrink-0 text-[10px] tracking-[0.2em] uppercase text-[#ff5a1f] border border-[#ff5a1f] px-4 py-2.5 items-center md:text-[#787872] md:border-[#f0d0b8] md:hover:border-[#ff5a1f] md:hover:text-[#ff5a1f] transition-all duration-200"
                             >
                               Book
